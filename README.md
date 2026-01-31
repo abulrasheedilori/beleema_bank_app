@@ -86,7 +86,7 @@ lib/
 │ ├── presentation/
 │ └── widgets/
 │ │
-│ └── dashboard/
+│ └── transfer/
 │ ├── data/
 │ ├── presentation/
 │ └── widgets/
