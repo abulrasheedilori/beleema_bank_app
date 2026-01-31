@@ -174,7 +174,7 @@ This project is proprietary and intended for internal or private use unless stat
 
 ## LIMITATION
 
-Implementation is limited to the provided endpoints provided and the requirements.
+Implementation is limited to the provided endpoints and the requirements.
 
 ## Security Enhancement
 ![pin_security_enhancement.png](assets/pin_security_enhancement.png)
