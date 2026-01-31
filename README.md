@@ -129,7 +129,7 @@ Navigation decisions are state‑driven:
 1. Clone the repository
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/abulrasheedilori/beleema_bank_app
    ```
 
 2. Install dependencies
