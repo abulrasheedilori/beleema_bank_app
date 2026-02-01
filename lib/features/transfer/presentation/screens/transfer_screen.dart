@@ -108,18 +108,6 @@ class _TransferScreenState extends State<TransferScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (_newBalance != null) {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (_) => TransactionResultScreen(
-            status: TransactionStatus.success,
-            title: "Transaction Successful",
-            message: 'New balance: ${formatAmount(_newBalance?.toInt() ?? 0)}',
-          ),
-        ),
-      );
-    }
-
     return Scaffold(
       appBar: AppBar(title: const Text('Transfer'), centerTitle: true),
       body: Padding(

@@ -110,7 +110,9 @@ class TransactionResultScreen extends StatelessWidget {
                     ),
                     onPressed: () {
                       status == TransactionStatus.error
-                          ? Navigator.pop(context)
+                          ? Navigator.pop(
+                              context,
+                            ) //use onRetry to resend the same instance for idempotent txn
                           : MaterialPageRoute(
                               builder: (_) => DashboardScreen(),
                             );
