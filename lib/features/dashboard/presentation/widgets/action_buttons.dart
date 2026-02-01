@@ -1,4 +1,4 @@
-import 'package:beleema_bank_app/features/transfer/presentation/screens/transfer_screen.dart';
+import 'package:beleema_bank_app/features/transfer/presentation/screens/screen/transfer_screen.dart';
 import 'package:flutter/material.dart';
 
 class ActionButtons extends StatelessWidget {

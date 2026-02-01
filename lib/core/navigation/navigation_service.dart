@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../features/auth/presentation/screen/login_screen.dart';
 
-class AppNavigator {
-  AppNavigator._();
+final navigationServiceProvider = Provider<NavigationService>((ref) {
+  return NavigationService();
+});
 
-  static final GlobalKey<NavigatorState> navigatorKey =
-      GlobalKey<NavigatorState>();
+class NavigationService {
+  final navigatorKey = GlobalKey<NavigatorState>();
 
-  static void goToLogin() {
+  void goToLogin() {
     navigatorKey.currentState?.pushAndRemoveUntil(
       MaterialPageRoute(builder: (_) => const LoginScreen()),
       (route) => false,

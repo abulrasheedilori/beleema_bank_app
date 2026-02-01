@@ -2,23 +2,23 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 
-import '../../../core/network/dio_client.dart';
-import '../../../core/security/secure_storage.dart';
-import '../../auth/data/dto/api_response.dart';
-import '../../auth/data/dto/login_error_response.dart';
+import '../../../../core/security/secure_storage.dart';
+import '../../../auth/data/dto/api_response.dart';
+import '../../../auth/data/dto/login_error_response.dart';
 
 class TransferRepository {
-  final Dio _dio = DioClient.dio;
+  final Dio _dio;
+  final SecureStorage secureStorage;
 
-  /// Perform transfer
-  /// Returns new balance on success
+  TransferRepository(this._dio, this.secureStorage);
+
   Future<ApiResponse> transfer({
     required double amount,
     required String toAccount,
     required String pin,
   }) async {
     try {
-      final token = await SecureStorage.read('auth_token');
+      final token = await secureStorage.read('auth_token');
 
       final response = await _dio.post(
         '/api/transfer',
@@ -31,10 +31,10 @@ class TransferRepository {
       );
 
       final transferData = TransferData.fromJson(response.data);
-      return ApiResponse.success(transferData); // always ApiResponse
+      return ApiResponse.success(transferData);
     } on DioException catch (e) {
       if (e.response?.data != null) {
-        final error = LoginErrorResponse.fromJson(e.response!.data);
+        final error = LoginErrorResponse.fromJson(e.response?.data);
         return ApiResponse.failure(error.message);
       }
       return ApiResponse.failure('Network error');

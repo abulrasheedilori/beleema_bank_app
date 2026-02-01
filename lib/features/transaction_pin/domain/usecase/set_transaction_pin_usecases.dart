@@ -1,7 +1,6 @@
-// domain/set_transaction_pin_usecase.dart
 import 'package:beleema_bank_app/features/transaction_pin/domain/pin_policy.dart';
 
-import '../data/pin_repository.dart';
+import '../../data/repository/pin_repository.dart';
 
 class SetTransactionPinUsecase {
   final PinRepository repository;

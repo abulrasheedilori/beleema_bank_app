@@ -1,6 +1,6 @@
-import '../data/dashboard_repository.dart';
-import '../data/models/account_model.dart';
-import '../data/models/transaction_model.dart';
+import '../../data/models/account_model.dart';
+import '../../data/models/transaction_model.dart';
+import '../../data/repository/dashboard_repository.dart';
 
 class DashboardUsecase {
   final DashboardRepository repository;

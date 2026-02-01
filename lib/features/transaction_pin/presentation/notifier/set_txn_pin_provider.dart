@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../domain/pin_policy.dart';
-import '../../domain/set_transaction_pin_usecases.dart';
+import '../../domain/usecase/set_transaction_pin_usecases.dart';
 
 class PinState {
   final List<int> pin;

@@ -1,102 +1,88 @@
-import 'package:beleema_bank_app/features/transfer/presentation/widgets/transfer_result_success.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/utils/currency_formatter.dart';
-import '../../../auth/data/dto/api_response.dart';
-import '../../data/transfer_repository.dart';
-import '../../domain/transfer_usecase.dart';
-import '../widgets/show_pin_bottom_sheet.dart';
+import '../../../../../core/utils/currency_formatter.dart';
+import '../../../../auth/data/dto/api_response.dart';
+import '../../widgets/show_pin_bottom_sheet.dart';
+import '../../widgets/transfer_result_success.dart';
+import '../notifier/transfer_screen_notifier_provider.dart';
 
-class TransferScreen extends StatefulWidget {
+class TransferScreen extends ConsumerStatefulWidget {
   const TransferScreen({super.key});
 
   @override
-  State<TransferScreen> createState() => _TransferScreenState();
+  ConsumerState<TransferScreen> createState() => _TransferScreenState();
 }
 
-class _TransferScreenState extends State<TransferScreen> {
-  final _repo = TransferRepository();
-  late final _usecase = TransferUsecase(_repo);
-
+class _TransferScreenState extends ConsumerState<TransferScreen> {
   final _amountController = TextEditingController();
   final _toAccountController = TextEditingController();
 
-  bool _loading = false;
-  String? _error;
-  double? _newBalance;
+  Future<void> _onContinue(WidgetRef ref, BuildContext context) async {
+    final notifier = ref.read(transferNotifierProvider.notifier);
+    final state = ref.watch(transferNotifierProvider);
 
-  Future<void> _onContinue() async {
-    final amount = int.tryParse(_amountController.text);
-    final toAccount = _toAccountController.text.trim();
+    // Update notifier state from text fields
+    notifier.updateAmount(_amountController.text);
+    notifier.updateToAccount(_toAccountController.text.trim());
 
-    if (amount == null || amount <= 0 || toAccount.isEmpty) {
-      setState(() => _error = 'Please enter valid transfer details');
-      return;
-    }
+    // Validate inputs
+    if (!notifier.validateInputs()) return;
 
+    final updatedState = ref.read(transferNotifierProvider);
+
+    // Show transfer summary
     final confirmed = await showTransferSummary(
       context: context,
-      amount: amount,
-      toAccount: toAccount,
+      amount: updatedState.amount ?? 0.0,
+      toAccount: updatedState.toAccount ?? "",
     );
 
     if (confirmed != true) return;
 
-    if (!mounted) return;
+    // Show PIN bottom sheet
+    if (!context.mounted) return;
     await showPinBottomSheet(
       context: context,
-      onPinEntered: (String pin, {bool biometric = false}) {
-        _executeTransfer(pin);
+      onPinEntered: (pin, {bool biometric = false}) async {
+        await notifier.executeTransfer(pin);
+
+        // Check result from state
+        final result = notifier.state.result;
+        if (result == null) return;
+
+        if (result.success && result.data is TransferData) {
+          final data = result.data as TransferData;
+          if (!context.mounted) return;
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (_) => TransactionResultScreen(
+                status: TransactionStatus.success,
+                title: 'Transaction Successful',
+                message:
+                    'New balance: ${formatAmount(data.newBalance.toInt())}',
+              ),
+            ),
+          );
+        } else {
+          if (!context.mounted) return;
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => TransactionResultScreen(
+                status: TransactionStatus.error,
+                title: 'Transaction Failed',
+                message: result.message ?? 'Something went wrong',
+                onRetry: () async {
+                  notifier.clearResult();
+                  await _onContinue(ref, context); // retry
+                },
+              ),
+            ),
+          );
+        }
       },
     );
-  }
-
-  Future<void> _executeTransfer(String pin) async {
-    if (!mounted) return;
-
-    setState(() {
-      _loading = true;
-      _error = null;
-    });
-
-    final response = await _usecase.executeTransfer(
-      amount: double.parse(_amountController.text),
-      toAccount: _toAccountController.text.trim(),
-      pin: pin,
-    );
-
-    if (!mounted) return;
-
-    setState(() => _loading = false);
-
-    if (response.success && response.data is TransferData) {
-      final transferData = response.data as TransferData;
-
-      _amountController.clear();
-      _toAccountController.clear();
-
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (_) => TransactionResultScreen(
-            status: TransactionStatus.success,
-            title: "Transaction Successful",
-            message:
-                'New balance: ${formatAmount(transferData.newBalance.toInt())}',
-          ),
-        ),
-      );
-    } else {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (_) => TransactionResultScreen(
-            status: TransactionStatus.error,
-            onRetry: () => _executeTransfer(pin),
-            title: "Transaction Failed",
-            message: response.message ?? "Something went wrong",
-          ),
-        ),
-      );
-    }
   }
 
   @override
@@ -108,6 +94,8 @@ class _TransferScreenState extends State<TransferScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(transferNotifierProvider);
+
     return Scaffold(
       appBar: AppBar(title: const Text('Transfer'), centerTitle: true),
       body: Padding(
@@ -122,13 +110,20 @@ class _TransferScreenState extends State<TransferScreen> {
             const SizedBox(height: 12),
             TextField(
               controller: _amountController,
-              keyboardType: TextInputType.number,
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d{0,2}$')),
+              ],
               decoration: const InputDecoration(labelText: 'Amount'),
             ),
             const SizedBox(height: 12),
             ElevatedButton(
-              onPressed: _loading ? null : _onContinue,
-              child: _loading
+              onPressed: state.loading
+                  ? null
+                  : () => _onContinue(ref, context), // pass ref + context
+              child: state.loading
                   ? const SizedBox(
                       height: 20,
                       width: 20,
@@ -145,7 +140,7 @@ class _TransferScreenState extends State<TransferScreen> {
 
 Future<bool?> showTransferSummary({
   required BuildContext context,
-  required int amount,
+  required double amount,
   required String toAccount,
 }) {
   return showModalBottomSheet<bool>(

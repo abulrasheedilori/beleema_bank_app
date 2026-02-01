@@ -1,5 +1,5 @@
-import '../../auth/data/dto/api_response.dart';
-import '../data/transfer_repository.dart';
+import '../../../auth/data/dto/api_response.dart';
+import '../../data/repository/transfer_repository.dart';
 
 class TransferUsecase {
   final TransferRepository repository;

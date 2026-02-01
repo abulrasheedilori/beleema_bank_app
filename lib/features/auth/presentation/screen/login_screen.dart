@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../domain/password_rules.dart';
-import '../provider/auth_provider.dart';
+import '../notifier/auth_provider.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -21,7 +21,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final auth = ref.watch(authProvider);
+    final auth = ref.watch(authNotifierProvider);
     final colors = Theme.of(context).colorScheme;
 
     final password = _passwordCtrl.text;
@@ -31,7 +31,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     final isValid = usernameValid && passwordValid;
     final isLoading = auth.loading;
 
-    ref.listen<AuthState>(authProvider, (prev, next) {
+    ref.listen<AuthState>(authNotifierProvider, (prev, next) {
       // Show error
       if (next.error != null && prev?.error != next.error) {
         ScaffoldMessenger.of(
@@ -138,7 +138,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         ? null
                         : () {
                             ref
-                                .read(authProvider.notifier)
+                                .read(authNotifierProvider.notifier)
                                 .login(
                                   _usernameCtrl.text.trim(),
                                   _passwordCtrl.text.trim(),

@@ -3,11 +3,13 @@ import 'dart:convert';
 import 'package:crypto/crypto.dart';
 import 'package:dio/dio.dart';
 
-import '../../../core/network/dio_client.dart';
-import '../../../core/security/secure_storage.dart';
+import '../../../../core/security/secure_storage.dart';
 
 class PinRepository {
-  final Dio _dio = DioClient.dio;
+  final Dio dio;
+  final SecureStorage secureStorage;
+
+  PinRepository({required this.dio, required this.secureStorage});
 
   /// Simple SHA-256 hashing (demo only)
   String hashPin(String pin, String salt) {
@@ -22,12 +24,12 @@ class PinRepository {
       // final hashedPin = hashPin(pin, 'some_salt');
 
       // Get auth token from secure storage
-      String? token = await SecureStorage.read("auth_token");
+      String? token = await secureStorage.read("auth_token");
       if (token == null) {
         throw Exception('Authentication token missing. Please login again.');
       }
 
-      final response = await _dio.post(
+      final response = await dio.post(
         '/api/set-transaction-pin',
         data: jsonEncode({'pin': pin}),
         options: Options(
