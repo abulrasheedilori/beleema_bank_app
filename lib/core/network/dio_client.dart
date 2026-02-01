@@ -17,25 +17,25 @@ class DioClient {
         ..interceptors.add(
           InterceptorsWrapper(
             onRequest: (options, handler) {
-              print(' REQUEST');
-              print('URI: ${options.uri}');
-              print('METHOD: ${options.method}');
-              print('BODY: ${options.data}');
-              handler.next(options);
+              // print(' REQUEST');
+              // print('URI: ${options.uri}');
+              // print('METHOD: ${options.method}');
+              // print('BODY: ${options.data}');
+              // handler.next(options);
             },
             onResponse: (response, handler) {
-              print(' RESPONSE');
-              print('STATUS: ${response.statusCode}');
-              print('DATA: ${response.data}');
-              handler.next(response);
+              // print(' RESPONSE');
+              // print('STATUS: ${response.statusCode}');
+              // print('DATA: ${response.data}');
+              // handler.next(response);
             },
             onError: (DioException e, handler) {
               final statusCode = e.response?.statusCode;
 
-              print(' ERROR');
-              print('URI: ${e.requestOptions.uri}');
-              print('STATUS: $statusCode');
-              print('DATA: ${e.response?.data}');
+              // print(' ERROR');
+              // print('URI: ${e.requestOptions.uri}');
+              // print('STATUS: $statusCode');
+              // print('DATA: ${e.response?.data}');
 
               // Global 401 handling
               if (statusCode == 401) {
