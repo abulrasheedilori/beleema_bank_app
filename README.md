@@ -22,11 +22,13 @@ The app is built with production‑grade patterns, emphasizing **robust error ha
 * **Framework:** Flutter
 * **Architecture:** Layered / Feature‑based architecture
 * **State Management:** Riverpod
-* **Networking:** Dio
+* **Networking:** Dio 
 * **Security:**
-    * Secure PIN handling
+    * Secure PIN handling with Flutter Secure Storage
     * Encrypted network communication (HTTPS / TLS)
+    * Keypad Re-engineered to prevent from keystoke attack
 * **Error Handling:** Centralized error mapping with user‑friendly messages
+* **Dependency Management** Riverpod
 
 ---
 
@@ -179,33 +181,59 @@ Implementation is limited to the provided endpoints and the requirements.
 ## Security Enhancement
 ![pin_security_enhancement.png](assets/pin_security_enhancement.png)
 
-## Mobile Screenshots
+### Mobile Screenshots
+----------------------------
+
+## Splash screen
 
 ![splash_screen.png](assets/splash_screen.png)
 
-![invalid_token.png](assets/invalid_token.png)
-
+##--- Screen 2 ---
 ![login_screen.png](assets/login_screen.png)
+
+##--- Screen 3 ---
 
 ![login_valid_screen.png](assets/login_valid_screen.png)
 
+##--- Screen 4 ---
+
+![invalid_token.png](assets/invalid_token.png)
+
+##--- Screen 5 ---
+
 ![empty_set_txn_screen.png](assets/empty_set_txn_screen.png)
+
 
 ![dedicated_secured_pin_pad.png](assets/dedicated_secured_pin_pad.png)
 
+##--- Screen 6 ---
+
 ![unmatched_pin_screen.png](assets/unmatched_pin_screen.png)
+
+##--- Screen 7 ---
 
 ![empty_confirm_pin_screen.png](assets/empty_confirm_pin_screen.png)
 
-![pin_security_enhancement.png](assets/pin_security_enhancement.png)
+##--- Screen 8 ---
 
 ![dashboard_screen.png](assets/dashboard_screen.png)
 
+##--- Screen 9 ---
+
 ![transfer_screen.png](assets/transfer_screen.png)
+
+##--- Screen 10 ---
 
 ![failure_status_transfer.png](assets/failure_status_transfer.png)
 
+##--- Screen 11 ---
+
 ![transfer_confirmation_screen.png](assets/transfer_confirmation_screen.png)
+
+##--- Pin Security Enhancement ---
+
+![pin_security_enhancement.png](assets/pin_security_enhancement.png)
+
 
 
 ## Mobile Video Demo Link
