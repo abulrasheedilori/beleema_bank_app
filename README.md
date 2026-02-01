@@ -156,7 +156,7 @@ Navigation decisions are state‑driven:
 
 ---
 
-## 📦 Setup & Installation
+## Setup & Installation
 
 1. Clone the repository
 
