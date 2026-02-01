@@ -46,17 +46,47 @@ The app is built with production‑grade patterns, emphasizing **robust error ha
 * PIN validation and confirmation
 * Graceful error feedback via snackbars/dedicated screen
 
-### Network Resilience
 
-* Request timeout handling
-* Retry and exponential backoff support ()
-* Clear UI feedback for network and server errors
+### Transaction PIN Setup
 
-### User Feedback
+* Secure Transaction Management
+* Set and confirm a transaction PIN to authorize transfers.
+* Supports biometric authentication for faster and secure access.
 
-* Error snackbars/screen for failed actions
-* Loading states for async operations
-* Disabled actions during in‑flight requests
+### Seamless Transfers
+
+* Enter account number and amount to transfer funds.
+* Transfer summary confirmation before final submission.
+* Real-time transaction status with success or error feedback.
+
+### Dashboard Overview
+
+* View account balance and recent transactions.
+* Toggle balance visibility for privacy.
+* Quick shortcuts for common actions.
+
+### State Management & Error Handling
+
+* Riverpod-powered notifier architecture ensures consistent state updates.
+* Handles errors gracefully with Snackbars and dedicated error screens.
+* Loading states and skeleton views for smoother UI experience.
+
+### Secure API Integration
+
+* Token-based authentication with auto-login/logout handling.
+* Handles 401 Unauthorized responses globally and navigates safely to login.
+* Supports retrying failed transfers without duplicating requests (demo).
+
+### Intuitive UX
+
+* PIN input with shake animation on invalid entry.
+* Formatted amount input prevents invalid decimals or non-numeric entries.
+* Responsive bottom sheets for PIN entry and transfer confirmation.
+
+### Extensible Architecture
+
+* Clear separation of UseCases, Repository, Providers, Notifiers, and Screens.
+* Easy to extend for additional features like recurring transfers, bill payments, or multi-account support
 
 ---
 
