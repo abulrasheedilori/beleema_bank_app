@@ -208,6 +208,7 @@ This project is proprietary and intended for internal or private use unless stat
 Implementation is limited to the provided endpoints and the requirements.
 
 ## Security Enhancement
+
 ![pin_security_enhancement.png](assets/pin_security_enhancement.png)
 
 ### Mobile Screenshots
@@ -231,9 +232,6 @@ Implementation is limited to the provided endpoints and the requirements.
 ##--- Screen 5 ---
 
 ![empty_set_txn_screen.png](assets/empty_set_txn_screen.png)
-
-
-![dedicated_secured_pin_pad.png](assets/dedicated_secured_pin_pad.png)
 
 ##--- Screen 6 ---
 
@@ -259,10 +257,14 @@ Implementation is limited to the provided endpoints and the requirements.
 
 ![transfer_confirmation_screen.png](assets/transfer_confirmation_screen.png)
 
+##--- Screen 12 ---
+
+![dedicated_secured_pin_pad.png](assets/dedicated_secured_pin_pad.png)
+
+
 ##--- Pin Security Enhancement ---
 
 ![pin_security_enhancement.png](assets/pin_security_enhancement.png)
-
 
 
 ## Mobile Video Demo Link
