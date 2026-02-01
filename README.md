@@ -255,12 +255,15 @@ Implementation is limited to the provided endpoints and the requirements.
 
 ##--- Screen 11 ---
 
-![transfer_confirmation_screen.png](assets/transfer_confirmation_screen.png)
+![confimed_transfer_page.png](assets/confimed_transfer_page.png)
 
 ##--- Screen 12 ---
 
-![dedicated_secured_pin_pad.png](assets/dedicated_secured_pin_pad.png)
+![transfer_confirmation_screen.png](assets/transfer_confirmation_screen.png)
 
+##--- Screen 13 ---
+
+![dedicated_secured_pin_pad.png](assets/dedicated_secured_pin_pad.png)
 
 ##--- Pin Security Enhancement ---
 
