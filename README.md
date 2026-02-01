@@ -148,8 +148,7 @@ This ensures users are never left confused during critical flows.
 
 ##  Navigation Logic
 
-Navigation decisions are state‑driven:
-
+* Navigation decisions are state‑driven:
 * Users without a transaction PIN are routed to PIN setup
 * Authenticated users resume from their last valid state
 * Invalid sessions trigger safe logout flows
