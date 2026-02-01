@@ -120,6 +120,7 @@ class PinNotifier extends StateNotifier<PinState> {
         isConfirmPhase: false,
         success: false,
       );
+      // if (e.toString().contains('401')) return;
     } finally {
       state = state.copyWith(loading: false);
     }

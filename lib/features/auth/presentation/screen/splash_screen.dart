@@ -19,7 +19,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     if (mounted) {
       Future.delayed(const Duration(seconds: 3), () {
         // Navigate to Login Screen
-        if (!mounted) return;
+        // if (!mounted) return;
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (_) => const LoginScreen()),
         );

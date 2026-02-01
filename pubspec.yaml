@@ -60,6 +60,9 @@ dependencies:
   #env variable
   flutter_dotenv: ^5.1.0
 
+  #fluter launcher icons_launcher:
+  flutter_launcher_icons: ^0.13.1
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
@@ -82,6 +85,7 @@ flutter:
   assets:
     - assets/images/
     - assets/lottie/
+    - .env.prod
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
@@ -102,3 +106,12 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/beleema_logo.png"
+  adaptive_icon_background: "#0A3D62"
+  adaptive_icon_foreground: "assets/images/beleema_logo.png"
+
+

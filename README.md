@@ -179,7 +179,7 @@ Implementation is limited to the provided endpoints and the requirements.
 ## Security Enhancement
 ![pin_security_enhancement.png](assets/pin_security_enhancement.png)
 
-## Mobile Screenshot
+## Mobile Screenshots
 
 ![splash_screen.png](assets/splash_screen.png)
 
@@ -206,3 +206,6 @@ Implementation is limited to the provided endpoints and the requirements.
 ![failure_status_transfer.png](assets/failure_status_transfer.png)
 
 ![transfer_confirmation_screen.png](assets/transfer_confirmation_screen.png)
+
+
+## Mobile Video Demo Link

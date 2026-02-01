@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'core/navigation/app_navigator.dart';
 import 'core/theme/theme_provider.dart';
 import 'features/auth/presentation/screen/splash_screen.dart';
 
@@ -12,7 +13,8 @@ class BeleemaApp extends ConsumerWidget {
     final theme = ref.watch(themeProvider);
 
     return MaterialApp(
-      title: 'Beleema Banking App',
+      navigatorKey: AppNavigator.navigatorKey,
+      title: 'Beleema Bank App',
       debugShowCheckedModeBanner: false,
       theme: theme,
       home: const SplashScreen(),

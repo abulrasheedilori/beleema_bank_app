@@ -46,12 +46,8 @@ class _TransferScreenState extends State<TransferScreen> {
     await showPinBottomSheet(
       context: context,
       onPinEntered: (String pin, {bool biometric = false}) {
-        // Call your async transfer function here
         _executeTransfer(pin);
       },
-      // onCompleted: (String pin, {bool biometric = false}) {
-      //   _executeTransfer(pin);
-      // },
     );
   }
 
@@ -94,6 +90,7 @@ class _TransferScreenState extends State<TransferScreen> {
         MaterialPageRoute(
           builder: (_) => TransactionResultScreen(
             status: TransactionStatus.error,
+            onRetry: () => _executeTransfer(pin),
             title: "Transaction Failed",
             message: response.message ?? "Something went wrong",
           ),
@@ -111,8 +108,6 @@ class _TransferScreenState extends State<TransferScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (_error != null) {}
-
     if (_newBalance != null) {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(

@@ -5,6 +5,7 @@ enum TransactionStatus { success, error }
 
 class TransactionResultScreen extends StatelessWidget {
   final TransactionStatus status;
+  final Future<void> Function()? onRetry;
   final String title;
   final String message;
 
@@ -13,6 +14,7 @@ class TransactionResultScreen extends StatelessWidget {
     required this.status,
     required this.title,
     required this.message,
+    this.onRetry,
   });
 
   String get _animationAsset {
@@ -115,7 +117,7 @@ class TransactionResultScreen extends StatelessWidget {
                     },
                     child: Text(
                       status == TransactionStatus.error
-                          ? 'OK'
+                          ? 'Retry'
                           : 'Back To Dashboard',
                       style: const TextStyle(fontSize: 16),
                     ),
