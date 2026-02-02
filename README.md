@@ -45,13 +45,7 @@ The app is built with production‑grade patterns, emphasizing **robust error ha
 * Dedicated transaction PIN setup screen and confirmation
 * PIN validation and confirmation
 * Graceful error feedback via snackbars/dedicated screen
-
-
-### Transaction PIN Setup
-
-* Secure Transaction Management
-* Set and confirm a transaction PIN to authorize transfers.
-* Supports biometric authentication for faster and secure access.
+* Secure Transaction Management limited by server provision.
 
 ### Seamless Transfers
 
