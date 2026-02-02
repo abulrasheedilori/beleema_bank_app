@@ -44,7 +44,7 @@ The app is built with production‑grade patterns, emphasizing **robust error ha
 
 * Dedicated transaction PIN setup screen and confirmation
 * PIN validation and confirmation
-* Graceful error feedback via snackbars/dedicated screen
+* Graceful error feedback via snack bars/dedicated screen
 * Secure Transaction Management limited by server provision.
 
 ### Seamless Transfers
@@ -182,7 +182,7 @@ This ensures users are never left confused during critical flows.
 
 ##  Status
 
-The app is under active development and continuously evolving to support more advanced banking features.
+The app is only a test for an assessment to demo best design principles in the banking industries.
 
 ---
 
