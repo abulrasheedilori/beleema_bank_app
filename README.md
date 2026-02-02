@@ -243,21 +243,18 @@ Implementation is limited to the provided endpoints and the requirements.
 
 ![transfer_screen.png](assets/transfer_screen.png)
 
+
 ##--- Screen 10 ---
-
-![failure_status_transfer.png](assets/failure_status_transfer.png)
-
-##--- Screen 11 ---
 
 ![confimed_transfer_page.png](assets/confimed_transfer_page.png)
 
-##--- Screen 12 ---
-
-![transfer_confirmation_screen.png](assets/transfer_confirmation_screen.png)
-
-##--- Screen 13 ---
+##--- Screen 11 ---
 
 ![dedicated_secured_pin_pad.png](assets/dedicated_secured_pin_pad.png)
+
+##--- Screen 12 ---
+
+![failure_status_transfer.png](assets/failure_status_transfer.png)
 
 ##--- Pin Security Enhancement ---
 
