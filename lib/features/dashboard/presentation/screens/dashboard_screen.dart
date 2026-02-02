@@ -47,13 +47,26 @@ class DashboardScreen extends ConsumerWidget {
         child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
-              child: DashboardTopSection(
-                account: state.account!,
-                hideBalance: state.hideBalance,
-                onToggleBalance: notifier.toggleBalanceVisibility,
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  DashboardTopSection(
+                    account: state.account!,
+                    hideBalance: state.hideBalance,
+                    onToggleBalance: notifier.toggleBalanceVisibility,
+                  ),
+
+                  Positioned(
+                    bottom: -60,
+                    left: 0,
+                    right: 0,
+                    child: const ShortcutsRow(),
+                  ),
+                ],
               ),
             ),
-            const SliverToBoxAdapter(child: ShortcutsRow()),
+
+            const SliverToBoxAdapter(child: SizedBox(height: 16)),
             const SliverToBoxAdapter(child: TransactionsHeader()),
             SliverPadding(
               padding: const EdgeInsets.symmetric(horizontal: 8),

@@ -22,7 +22,7 @@ class DashboardTopSection extends StatelessWidget {
     final colors = Theme.of(context).colorScheme;
 
     return Container(
-      padding: const EdgeInsets.fromLTRB(16, 56, 16, 24),
+      padding: const EdgeInsets.fromLTRB(8, 56, 8, 24),
       decoration: BoxDecoration(
         color: colors.primary,
         // borderRadius: const BorderRadius.vertical(bottom: Radius.circular(28)),
@@ -41,11 +41,11 @@ class DashboardTopSection extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           _BookBalanceRow(balance: account.balance),
-          const SizedBox(height: 12),
-          const ActionButtons(),
-          const SizedBox(height: 12),
-          _ShortcutsHeader(),
           const SizedBox(height: 4),
+          const ActionButtons(),
+          const SizedBox(height: 4),
+          _ShortcutsHeader(),
+          const SizedBox(height: 36),
         ],
       ),
     );

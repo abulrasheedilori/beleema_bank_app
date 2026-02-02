@@ -5,14 +5,20 @@ class ShortcutsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return SizedBox(
+      height: 120, // slightly taller than cards
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        physics: const BouncingScrollPhysics(),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         children: const [
           _Shortcut(icon: Icons.credit_card, label: 'Cards'),
+          SizedBox(width: 12),
           _Shortcut(icon: Icons.receipt, label: 'Bills'),
+          SizedBox(width: 12),
           _Shortcut(icon: Icons.wallet, label: 'Expenses'),
+          SizedBox(width: 12),
+          _Shortcut(icon: Icons.save, label: 'Savings'),
         ],
       ),
     );
@@ -35,6 +41,7 @@ class _Shortcut extends StatelessWidget {
           width: 100,
           height: 100,
           decoration: BoxDecoration(
+            border: Border.all(color: Colors.grey.shade300),
             color: colors.surfaceContainer,
             borderRadius: BorderRadius.circular(16),
           ),
