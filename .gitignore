@@ -45,4 +45,4 @@ app.*.map.json
 /android/app/release
 
 #security files
-.env.prod
+.env.*
