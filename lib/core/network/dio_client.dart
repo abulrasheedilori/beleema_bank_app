@@ -20,18 +20,18 @@ final dioProvider = Provider<Dio>((ref) {
   dio.interceptors.add(
     InterceptorsWrapper(
       onRequest: (options, handler) {
-        print(' REQUEST');
-        print('URI: ${options.uri}');
-        print('METHOD: ${options.method}');
-        print('BODY: ${options.data}');
-        handler.next(options);
+        // print(' REQUEST');
+        // print('URI: ${options.uri}');
+        // print('METHOD: ${options.method}');
+        // print('BODY: ${options.data}');
+        // handler.next(options);
       },
-      // onResponse: (response, handler) {
-      //   print(' RESPONSE');
-      //   print('STATUS: ${response.statusCode}');
-      //   print('DATA: ${response.data}');
-      //   handler.next(response);
-      // },
+      onResponse: (response, handler) {
+        // print(' RESPONSE');
+        // print('STATUS: ${response.statusCode}');
+        // print('DATA: ${response.data}');
+        handler.next(response);
+      },
       onError: (DioException e, handler) {
         final statusCode = e.response?.statusCode;
 
